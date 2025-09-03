@@ -3,340 +3,418 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeanCraft - 커피 구독 서비스</title>
+    <title>[여기에 제품명 입력] - 새로운 경험의 시작</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* 전역 스타일 */
-        body, h1, h2, h3, p, button, ul {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
+        :root {
+            --primary-color: #5A67D8; /* Example: Blue */
+            --secondary-color: #63B3ED; /* Example: Light Blue */
+            --text-color: #1A202C; /* Example: Dark Gray */
+            --background-color: #F7FAFC; /* Example: Light Gray */
+            --card-background: #FFFFFF;
+            --cta-color: #38A169; /* Example: Green */
+            --border-color: #E2E8F0;
         }
 
         body {
-            background-color: #F9F3E3; /* 크림 베이지 배경 */
-            color: #2F1D16; /* 다크 브라운 */
+            font-family: 'Pretendard', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; }
 
         a {
             text-decoration: none;
-            color: inherit;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: var(--secondary-color);
         }
 
-        /* 헤더 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
         header {
+            background-color: var(--card-background);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-content {
             display: flex;
             justify-content: space-between;
-            padding: 20px 10%;
-            background-color: #2F1D16; /* 다크 브라운 */
-            color: #F9F3E3; /* 크림 베이지 */
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
         }
 
-        header .logo {
-            font-size: 24px;
-            font-weight: bold;
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--cta-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+        .cta-button:hover {
+            background-color: #48BB78;
         }
 
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 80px 20px;
-            background-color: #F1E1D0; /* 민트 포인트 */
+            padding: 4rem 0;
+            background-color: #EBF8FF;
         }
-
+        .hero img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-top: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
         .hero h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
-
         .hero p {
-            font-size: 18px;
-            margin-bottom: 40px;
+            font-size: 1.25rem;
+            color: #4A5568;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
         }
 
-        .hero button {
-            background-color: #2F1D16; /* 다크 브라운 */
-            color: #F9F3E3; /* 크림 베이지 */
-            padding: 15px 30px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
+        /* Sections */
+        .section {
+            padding: 4rem 0;
         }
 
-        .hero button:hover {
-            background-color: #F1E1D0; /* 민트 포인트 */
-            color: #2F1D16;
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
         }
 
-        /* 특징 카드 */
-        .features {
+        /* Product/Service Description */
+        .description-content {
             display: flex;
-            justify-content: space-around;
-            padding: 50px 10%;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+        }
+        .description-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+        .description-text {
+            text-align: center;
         }
 
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
         .feature-card {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            padding: 20px;
-            width: 30%;
-            text-align: center;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-card h3 {
-            margin-bottom: 10px;
-            font-size: 22px;
-        }
-
-        .feature-card p {
-            font-size: 16px;
-            color: #555;
-        }
-
-        /* 제품 카드 */
-        .products {
-            display: flex;
-            justify-content: space-around;
-            padding: 50px 10%;
-            flex-wrap: wrap;
-        }
-
-        .product-card {
-            background-color: #fff;
-            padding: 20px;
-            width: 30%;
-            text-align: center;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-        }
-
-        .product-card img {
-            width: 100%;
-            border-radius: 8px;
-        }
-
-        .product-card h3 {
-            margin-top: 15px;
-            font-size: 22px;
-        }
-
-        .product-card p {
-            font-size: 16px;
-            color: #555;
-        }
-
-        /* 후기 */
-        .testimonials {
-            background-color: #F1E1D0; /* 민트 포인트 */
-            padding: 50px 10%;
+            background-color: var(--card-background);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             text-align: center;
         }
-
-        .testimonials h2 {
-            margin-bottom: 20px;
-            font-size: 28px;
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
         }
 
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
         .testimonial-card {
-            display: inline-block;
-            width: 30%;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 20px;
-        }
-
-        .testimonial-card p {
-            font-size: 16px;
-            color: #555;
-        }
-
-        /* CTA 배너 */
-        .cta-banner {
-            background-color: #2F1D16;
-            color: #F9F3E3;
+            background-color: var(--card-background);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             text-align: center;
-            padding: 40px 10%;
+        }
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        .testimonial-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            object-fit: cover;
         }
 
-        .cta-banner input {
-            padding: 15px;
-            width: 60%;
-            border-radius: 5px;
-            border: none;
-            margin-right: 10px;
+        /* CTA Banner */
+        .cta-banner {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 12px;
         }
-
-        .cta-banner button {
-            padding: 15px 30px;
-            border: none;
-            background-color: #F1E1D0;
-            color: #2F1D16;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
+        .cta-banner h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .cta-banner p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        .cta-banner .cta-button {
+            background-color: white;
+            color: var(--cta-color);
+        }
+        .cta-banner .cta-button:hover {
+            background-color: #E2E8F0;
         }
 
         /* FAQ */
-        .faq {
-            padding: 50px 10%;
-        }
-
-        .faq h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-
         .faq-item {
-            margin-bottom: 20px;
+            background-color: var(--card-background);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
         }
-
-        .faq-item h3 {
-            font-size: 20px;
-            cursor: pointer;
+        .faq-question {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
         }
-
-        .faq-item p {
-            font-size: 16px;
-            color: #555;
-            display: none;
-        }
-
-        .faq-item.active p {
-            display: block;
+        .faq-answer {
+            color: #4A5568;
         }
 
         /* Footer */
         footer {
+            background-color: #1A202C;
+            color: #E2E8F0;
+            padding: 2rem 0;
             text-align: center;
-            background-color: #2F1D16;
-            color: #F9F3E3;
-            padding: 20px 10%;
+        }
+        .footer-links a {
+            color: #A0AEC0;
+            margin: 0 0.5rem;
+        }
+        .footer-links a:hover {
+            color: white;
         }
 
-        /* 반응형 */
-        @media (max-width: 768px) {
-            .features, .products {
-                flex-direction: column;
-                align-items: center;
+        /* Mobile Responsiveness */
+        @media (min-width: 768px) {
+            .description-content {
+                flex-direction: row;
+                text-align: left;
             }
-
-            .feature-card, .product-card {
-                width: 80%;
-                margin-bottom: 20px;
+            .description-content img {
+                max-width: 50%;
             }
-
-            .testimonial-card {
-                width: 80%;
+            .description-text {
+                text-align: left;
             }
         }
+
+        /* Dark Mode (Optional) */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-color: #E2E8F0;
+                --background-color: #1A202C;
+                --card-background: #2D3748;
+                --border-color: #4A5568;
+                --primary-color: #63B3ED;
+                --secondary-color: #5A67D8;
+            }
+            h1, h2, h3 {
+                color: var(--primary-color);
+            }
+            .cta-button {
+                color: white;
+            }
+            .cta-banner .cta-button {
+                background-color: var(--background-color);
+                color: var(--primary-color);
+            }
+            .cta-banner .cta-button:hover {
+                background-color: #4A5568;
+            }
+        }
+
     </style>
 </head>
 <body>
 
-<!-- Header -->
-<header>
-    <div class="logo">BeanCraft</div>
-</header>
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">[여기에 제품명 입력]</a>
+            <a href="#cta" class="cta-button">지금 [CTA 목표]</a>
+        </div>
+    </header>
 
-<!-- Hero Section -->
-<section class="hero">
-    <h1>신선한 커피, 집으로 바로 배달</h1>
-    <p>지금 첫 구독 신청 시 40% 할인 혜택을 놓치지 마세요!</p>
-    <button>지금 구독하기</button>
-</section>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>[여기에 제품명 입력]의 혁신적인 경험을 시작하세요!</h1>
+                <p>혁신적인 솔루션으로 당신의 삶을 변화시킵니다. 지금 바로 특별한 혜택을 만나보세요.</p>
+                <a href="#cta" class="cta-button">지금 무료 체험 시작하기</a>
+                <img src="https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="제품/서비스를 보여주는 이미지" loading="lazy" width="1200" height="800">
+            </div>
+        </section>
 
-<!-- Features Section -->
-<section class="features">
-    <div class="feature-card">
-        <h3>신선 원두 72시간 내 로스팅</h3>
-        <p>최고의 신선도를 자랑하는 커피 원두를 72시간 내에 로스팅하여 배송합니다.</p>
-    </div>
-    <div class="feature-card">
-        <h3>첫 구독 40% 할인</h3>
-        <p>첫 번째 구독 시 40%의 할인 혜택을 제공합니다. 지금 바로 구독하세요!</p>
-    </div>
-    <div class="feature-card">
-        <h3>무료 익일 배송</h3>
-        <p>커피 원두가 당신의 집으로 빠르고 무료로 익일 배송됩니다.</p>
-    </div>
-</section>
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>[여기에 제품명 입력]을 선택해야 하는 이유</h2>
+                </div>
+                <div class="description-content">
+                    <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="제품/서비스의 강점을 보여주는 이미지" loading="lazy" width="800" height="600">
+                    <div class="description-text">
+                        <h3>최고의 가치를 경험하세요</h3>
+                        <p>[여기에 제품명 입력]은 고객 만족을 최우선으로 생각하며, 최첨단 기술과 사용자 친화적인 디자인을 결합하여 [주요 혜택 1], [주요 혜택 2], 그리고 [주요 혜택 3]을 제공합니다. 이는 당신의 일상과 비즈니스에 놀라운 변화를 가져올 것입니다.</p>
+                        <p>우리는 단순한 제품을 넘어, 당신의 목표 달성을 돕는 든든한 파트너가 되고자 합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- Products Section -->
-<section class="products">
-    <div class="product-card">
-        <img src="https://source.unsplash.com/400x300/?coffee" alt="커피 제품 이미지">
-        <h3>아메리카노 원두</h3>
-        <p>진한 맛의 아메리카노를 위한 완벽한 원두</p>
-    </div>
-    <div class="product-card">
-        <img src="https://source.unsplash.com/400x300/?coffee-beans" alt="커피 원두 이미지">
-        <h3>라떼 원두</h3>
-        <p>크리미한 라떼에 최적인 원두</p>
-    </div>
-    <div class="product-card">
-        <img src="https://source.unsplash.com/400x300/?espresso" alt="에스프레소 이미지">
-        <h3>에스프레소 원두</h3>
-        <p>강렬하고 진한 에스프레소의 맛</p>
-    </div>
-</section>
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>주요 특징과 혜택</h2>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon" aria-label="아이콘1">🌟</div>
+                        <h3>[특징/장점 1 제목]</h3>
+                        <p>특징에 대한 간결하고 매력적인 설명을 작성하세요. 이 특징이 사용자에게 어떤 이점을 주는지 명확하게 전달합니다.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" aria-label="아이콘2">🚀</div>
+                        <h3>[특징/장점 2 제목]</h3>
+                        <p>특징에 대한 간결하고 매력적인 설명을 작성하세요. 이 특징이 사용자에게 어떤 이점을 주는지 명확하게 전달합니다.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" aria-label="아이콘3">💡</div>
+                        <h3>[특징/장점 3 제목]</h3>
+                        <p>특징에 대한 간결하고 매력적인 설명을 작성하세요. 이 특징이 사용자에게 어떤 이점을 주는지 명확하게 전달합니다.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" aria-label="아이콘4">🛡️</div>
+                        <h3>[특징/장점 4 제목]</h3>
+                        <p>특징에 대한 간결하고 매력적인 설명을 작성하세요. 이 특징이 사용자에게 어떤 이점을 주는지 명확하게 전달합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- Testimonials Section -->
-<section class="testimonials">
-    <h2>고객의 목소리</h2>
-    <div class="testimonial-card">
-        <p>"BeanCraft 덕분에 매일 아침 신선한 커피를 마시고 있어요!"</p>
-    </div>
-    <div class="testimonial-card">
-        <p>"구독 후 커피의 질이 확실히 달라졌어요. 강력 추천합니다!"</p>
-    </div>
-    <div class="testimonial-card">
-        <p>"빠른 배송과 신선한 원두가 정말 마음에 들어요."</p>
-    </div>
-</section>
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>고객 후기</h2>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1492562080023-2c131185b37c?ixlib=rb-4.0.3&auto=format&fit=crop&w=64&h=64&q=80" alt="고객 아바타" loading="lazy">
+                        <p class="testimonial-text">"[여기에 제품명 입력] 덕분에 업무 효율이 2배 이상 늘었어요! 정말 만족스럽습니다."</p>
+                        <div class="testimonial-author">김민준, 스타트업 CEO</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1542154331-5079a4993444?ixlib=rb-4.0.3&auto=format&fit=crop&w=64&h=64&q=80" alt="고객 아바타" loading="lazy">
+                        <p class="testimonial-text">"사용하기 너무 쉬워서 놀랐어요. 기술에 익숙하지 않은 저도 바로 사용할 수 있었습니다."</p>
+                        <div class="testimonial-author">박서연, 프리랜서 디자이너</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1493666453915-c26645c3451e?ixlib=rb-4.0.3&auto=format&fit=crop&w=64&h=64&q=80" alt="고객 아바타" loading="lazy">
+                        <p class="testimonial-text">"가성비와 성능 모두를 잡은 최고의 제품입니다. 주변에 적극 추천하고 있어요!"</p>
+                        <div class="testimonial-author">이지훈, 개발자</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- CTA Banner Section -->
-<section class="cta-banner">
-    <h2>이메일로 최신 소식을 받아보세요!</h2>
-    <input type="email" placeholder="이메일을 입력하세요">
-    <button>구독하기</button>
-</section>
+        <section class="section" id="cta">
+            <div class="container cta-banner">
+                <h2>더 나은 미래를 위한 첫걸음</h2>
+                <p>지금 바로 [여기에 제품명 입력]을 시작하고 새로운 가능성을 열어보세요.</p>
+                <a href="#" class="cta-button">[CTA 목표]</a>
+            </div>
+        </section>
 
-<!-- FAQ Section -->
-<section class="faq">
-    <h2>자주 묻는 질문</h2>
-    <div class="faq-item">
-        <h3>구독을 취소할 수 있나요?</h3>
-        <p>네, 언제든지 구독을 취소하실 수 있습니다.</p>
-    </div>
-    <div class="faq-item">
-        <h3>배달 지역은 어디인가요?</h3>
-        <p>전국 어디든지 무료 배송됩니다.</p>
-    </div>
-    <div class="faq-item">
-        <h3>커피의 원산지는 어디인가요?</h3>
-        <p>원두는 세계 각지에서 공수하며, 품질을 최우선으로 합니다.</p>
-    </div>
-</section>
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>자주 묻는 질문</h2>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h3 class="faq-question">Q: [FAQ 질문 1]</h3>
+                        <p class="faq-answer">A: 질문에 대한 명확하고 간결한 답변을 작성하세요. 사용자가 궁금해하는 핵심 내용을 중심으로 설명합니다.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">Q: [FAQ 질문 2]</h3>
+                        <p class="faq-answer">A: 질문에 대한 명확하고 간결한 답변을 작성하세요. 사용자가 궁금해하는 핵심 내용을 중심으로 설명합니다.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">Q: [FAQ 질문 3]</h3>
+                        <p class="faq-answer">A: 질문에 대한 명확하고 간결한 답변을 작성하세요. 사용자가 궁금해하는 핵심 내용을 중심으로 설명합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- Footer -->
-<footer>
-    <p>&copy; 2025 BeanCraft. All rights reserved.</p>
-</footer>
+    </main>
 
-<script>
-    // FAQ 토글 기능
-    document.querySelectorAll('.faq-item h3').forEach(item => {
-        item.addEventListener('click', () => {
-            item.parentElement.classList.toggle('active');
-        });
-    });
-</script>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 [여기에 제품명 입력]. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="#">개인정보처리방침</a>
+                <a href="#">이용약관</a>
+                <a href="#">고객센터</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
+
