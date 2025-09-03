@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeanCraft - 커피 구독 서비스</title>
+    <style>
+        /* 전역 스타일 */
+        body, h1, h2, h3, p, button, ul {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #F9F3E3; /* 크림 베이지 배경 */
+            color: #2F1D16; /* 다크 브라운 */
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 헤더 */
+        header {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 10%;
+            background-color: #2F1D16; /* 다크 브라운 */
+            color: #F9F3E3; /* 크림 베이지 */
+        }
+
+        header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background-color: #F1E1D0; /* 민트 포인트 */
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .hero button {
+            background-color: #2F1D16; /* 다크 브라운 */
+            color: #F9F3E3; /* 크림 베이지 */
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .hero button:hover {
+            background-color: #F1E1D0; /* 민트 포인트 */
+            color: #2F1D16;
+        }
+
+        /* 특징 카드 */
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 50px 10%;
+        }
+
+        .feature-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 30%;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .feature-card p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* 제품 카드 */
+        .products {
+            display: flex;
+            justify-content: space-around;
+            padding: 50px 10%;
+            flex-wrap: wrap;
+        }
+
+        .product-card {
+            background-color: #fff;
+            padding: 20px;
+            width: 30%;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .product-card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .product-card h3 {
+            margin-top: 15px;
+            font-size: 22px;
+        }
+
+        .product-card p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* 후기 */
+        .testimonials {
+            background-color: #F1E1D0; /* 민트 포인트 */
+            padding: 50px 10%;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .testimonial-card {
+            display: inline-block;
+            width: 30%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+
+        .testimonial-card p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* CTA 배너 */
+        .cta-banner {
+            background-color: #2F1D16;
+            color: #F9F3E3;
+            text-align: center;
+            padding: 40px 10%;
+        }
+
+        .cta-banner input {
+            padding: 15px;
+            width: 60%;
+            border-radius: 5px;
+            border: none;
+            margin-right: 10px;
+        }
+
+        .cta-banner button {
+            padding: 15px 30px;
+            border: none;
+            background-color: #F1E1D0;
+            color: #2F1D16;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 50px 10%;
+        }
+
+        .faq h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-item h3 {
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .faq-item p {
+            font-size: 16px;
+            color: #555;
+            display: none;
+        }
+
+        .faq-item.active p {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background-color: #2F1D16;
+            color: #F9F3E3;
+            padding: 20px 10%;
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .features, .products {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature-card, .product-card {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+
+            .testimonial-card {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="logo">BeanCraft</div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <h1>신선한 커피, 집으로 바로 배달</h1>
+    <p>지금 첫 구독 신청 시 40% 할인 혜택을 놓치지 마세요!</p>
+    <button>지금 구독하기</button>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+    <div class="feature-card">
+        <h3>신선 원두 72시간 내 로스팅</h3>
+        <p>최고의 신선도를 자랑하는 커피 원두를 72시간 내에 로스팅하여 배송합니다.</p>
+    </div>
+    <div class="feature-card">
+        <h3>첫 구독 40% 할인</h3>
+        <p>첫 번째 구독 시 40%의 할인 혜택을 제공합니다. 지금 바로 구독하세요!</p>
+    </div>
+    <div class="feature-card">
+        <h3>무료 익일 배송</h3>
+        <p>커피 원두가 당신의 집으로 빠르고 무료로 익일 배송됩니다.</p>
+    </div>
+</section>
+
+<!-- Products Section -->
+<section class="products">
+    <div class="product-card">
+        <img src="https://source.unsplash.com/400x300/?coffee" alt="커피 제품 이미지">
+        <h3>아메리카노 원두</h3>
+        <p>진한 맛의 아메리카노를 위한 완벽한 원두</p>
+    </div>
+    <div class="product-card">
+        <img src="https://source.unsplash.com/400x300/?coffee-beans" alt="커피 원두 이미지">
+        <h3>라떼 원두</h3>
+        <p>크리미한 라떼에 최적인 원두</p>
+    </div>
+    <div class="product-card">
+        <img src="https://source.unsplash.com/400x300/?espresso" alt="에스프레소 이미지">
+        <h3>에스프레소 원두</h3>
+        <p>강렬하고 진한 에스프레소의 맛</p>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials">
+    <h2>고객의 목소리</h2>
+    <div class="testimonial-card">
+        <p>"BeanCraft 덕분에 매일 아침 신선한 커피를 마시고 있어요!"</p>
+    </div>
+    <div class="testimonial-card">
+        <p>"구독 후 커피의 질이 확실히 달라졌어요. 강력 추천합니다!"</p>
+    </div>
+    <div class="testimonial-card">
+        <p>"빠른 배송과 신선한 원두가 정말 마음에 들어요."</p>
+    </div>
+</section>
+
+<!-- CTA Banner Section -->
+<section class="cta-banner">
+    <h2>이메일로 최신 소식을 받아보세요!</h2>
+    <input type="email" placeholder="이메일을 입력하세요">
+    <button>구독하기</button>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq">
+    <h2>자주 묻는 질문</h2>
+    <div class="faq-item">
+        <h3>구독을 취소할 수 있나요?</h3>
+        <p>네, 언제든지 구독을 취소하실 수 있습니다.</p>
+    </div>
+    <div class="faq-item">
+        <h3>배달 지역은 어디인가요?</h3>
+        <p>전국 어디든지 무료 배송됩니다.</p>
+    </div>
+    <div class="faq-item">
+        <h3>커피의 원산지는 어디인가요?</h3>
+        <p>원두는 세계 각지에서 공수하며, 품질을 최우선으로 합니다.</p>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 BeanCraft. All rights reserved.</p>
+</footer>
+
+<script>
+    // FAQ 토글 기능
+    document.querySelectorAll('.faq-item h3').forEach(item => {
+        item.addEventListener('click', () => {
+            item.parentElement.classList.toggle('active');
+        });
+    });
+</script>
+
+</body>
+</html>
